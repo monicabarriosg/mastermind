@@ -1,21 +1,16 @@
 from colored import fore, style
-
+#clase para el tablero
 class Board:
+    #inicializa 
     def __init__(self):
-        self.moves = []
-        self.devolver_retroalimentacion = []
-
-    def actualizar_tablero(self, adivinanza, retroalimentacion):
-        self.moves.append(adivinanza)
-        self.devolver_retroalimentacion.append(retroalimentacion)
-
+        self.intentos = []
+    #actualiza el tablero para dar retroalimentacion
+    def actualizar_tablero(self, intento, retroalimentacion):
+        self.intentos.append((intento, retroalimentacion))
+    #funcion para mostar la retroalimentacion
     def mostrar(self):
-        red = fore('red')
-        green = fore('green')
-        reset = style('reset')
-        print("\nTablero:")
-        for move, feedback in zip(self.moves, self.devolver_retroalimentacion):
-          print(f"{green}Adivinanza: {move}{reset}")
-          print(f"{red}Retroalimentación: {feedback}{reset}")
-            # print("Adivinanza: ", move)
-            # print("Retroalimentación: ", devolver_retroalimentacion)
+        print(f"{fore.CYAN}Tablero de Intentos:{style.RESET}")
+        for intento, retroalimentacion in self.intentos:
+            intento_display = ' '.join(intento)
+            retroalimentacion_display = ' '.join(retroalimentacion)
+            print(f"Intento: {intento_display} | Retroalimentación: {retroalimentacion_display}")

@@ -1,19 +1,20 @@
 import random
-class Code_creator:
+#clase  para creacion del codigo de manera aleatoria
+class CodeMaker:
     def __init__(self):
-        self.code = []
+        self.code = None
 
     def establecer_codigo(self):
-        colores = ["rojo", "azul", "verde", "amarillo"]
-        print("Introduce el código secreto usando los colores:")
-        print(", ".join(colores))
-        codigo = input("Código secreto: ").strip().lower().split(',')
-        codigo = [color.strip() for color in codigo]
-        if len(codigo) != 4 or not all(color in colores for color in codigo):
-            print("Entrada inválida. Asegúrate de usar solo los colores permitidos y.")
-            return self.establecer_codigo()
-        self.code = codigo
+        while True:
+            codigo = input("Introduce el código secreto (4 caracteres, por ejemplo 'RGBYr'): ").strip().upper()
+            if len(codigo) == 4 and codigo.isalpha():
+                self.code = codigo
+                break
+            else:
+                print("Código inválido. Debe tener 4 caracteres alfabéticos.")
 
     def generar_codigo_aleatorio(self):
-        colores = ["rojo", "azul", "verde", "amarillo"]
-        self.code = [random.choice(colores) for _ in range(4)]
+        colores = ['R', 'G', 'B', 'Y', 'O', 'P']  
+        self.code = ''.join(random.choice(colores) for _ in range(4))
+        print(f"El código secreto generado es: {self.code}")
+        return self.code
